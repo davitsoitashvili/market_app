@@ -1,0 +1,48 @@
+.container {
+  padding: 250px 150px 150px 150px;
+  height: 70vh;
+  background-image: linear-gradient(
+    to bottom,
+    #1b69e5,
+    #3964ed,
+    #535df3,
+    #6c54f8,
+    #8447fa,
+    #8f40fa,
+    #9936fa,
+    #a42af9,
+    #a42af9,
+    #a42af9,
+    #a42af9,
+    #a42af9
+  );
+}
+
+.wrapper {
+  height: 600px;
+  background-color: #ffffff;
+  border-radius: 15px;
+}
+
+.layout {
+  display: flex;
+}
+
+.input {
+  margin-bottom: 20px !important;
+  width: 250px;
+}
+
+.button {
+  margin-bottom: 10px;
+  width: 250px;
+  height: 40px;
+}
+
+.form {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

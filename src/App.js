@@ -1,6 +1,6 @@
 import "./App.css";
-import LandingPage from "./components/LandingPage/Landing";
-import AuthorizationPage from "./components/Authorization/Authorization";
+import LandingPage from "./components/container/LandingPage/Landing";
+import AuthorizationPage from "./components/container/Authorization/Authorization";
 
 function App() {
   return (
