@@ -5,11 +5,12 @@ import StorePic from "../../../assets/img/store.png";
 import Logo from "../../../assets/img/logo_transparent.png";
 import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 function LandingPage() {
+  const scrollToMyRef = () => window.scrollTo(0, document.body.scrollHeight);
   return (
     <div className={styles["wrapper"]}>
-      {/* <div>
-        <img src={Logo} alt="Logo"></img>
-      </div> */}
+      <div className={styles["logo_container"]}>
+        <img src={Logo} alt="Logo" className={styles["logo"]}></img>
+      </div>
       <div className={styles["background"]}>
         <div className={styles["headers"]}>
           <Typography
@@ -29,10 +30,11 @@ function LandingPage() {
         </div>
       </div>
       <div style={{ flex: "1", color: "#ffffff" }}>
-        <DoubleArrowIcon className={styles["arrow_icon"]} />
-        <Typography  component="p">
-          Let's begin our journey
-        </Typography>
+        <DoubleArrowIcon
+          className={styles["arrow_icon"]}
+          onClick={scrollToMyRef}
+        />
+        <Typography component="p">Let's begin our journey</Typography>
       </div>
     </div>
   );
