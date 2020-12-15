@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { logout, getToken } from "../../../service/auth";
 import styles from "./DashBoard.module.css";
+import { connect } from "react-redux";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
-function DashBoard(props){
-    if (getToken()) {
-        return (
-            <>
-            <h1 className={styles["h1_color"]}>Your Token : {getToken()}</h1>
-            <hr/>
-            <button onClick={logout}>Log Out</button>
-            </>
-        )
-    } else {
-        return <Redirect to="/login"/>
-    }
-  
+import { getItems } from "../../../store/actions/itemsActions";
+import { JEWELERY } from "../../../service/enum/ProductTypes";
+import NavBar from "../Nav/Nav";
+
+function DashBoard(props) {
+  useEffect(() => {
+    props.getItems(JEWELERY);
+  }, []);
+  if (getToken()) {
+    return (
+      <>
+        {props.itemsLoading && <LinearProgress />}
+        <NavBar />
+      </>
+    );
+  } else {
+    return <Redirect to="/login" />;
+  }
 }
-export default DashBoard;
+
+const mapStateToProps = (state) => ({
+  items: state.items.items,
+  itemsLoading: state.items.itemsLoading,
+});
+export default connect(mapStateToProps, { getItems })(DashBoard);

@@ -29,7 +29,7 @@ function LandingPage() {
           <img src={StorePic} alt="Store image"></img>
         </div>
       </div>
-      <div style={{ flex: "1", color: "#ffffff" }}>
+      <div className={styles["arrow_icon_container"]}>
         <DoubleArrowIcon
           className={styles["arrow_icon"]}
           onClick={scrollToMyRef}

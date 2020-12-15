@@ -34,7 +34,7 @@ function Registration() {
   } else {
     return (
       <div className={styles["layout"]}>
-        <div style={{ flex: "1" }}>
+        <div className={styles["image_wrapper"]}>
           <img style={{ width: "465px" }} src={User} alt="Store image"></img>
         </div>
         <div className={styles["form"]}>

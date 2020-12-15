@@ -5,10 +5,9 @@ import Form from "../../presentation/Form/Form";
 import styles from "./Authorization.module.css";
 import User from "../../../assets/img/user.png";
 import { Link, Redirect } from "react-router-dom";
-import { login,getToken } from "../../../service/auth";
+import { login, getToken } from "../../../service/auth";
 
 function Login() {
-
   const onSubmit = async (event) => {
     event.preventDefault();
     const { target } = event;
@@ -19,13 +18,12 @@ function Login() {
     login(loginData.email, loginData.password);
   };
 
-
   if (getToken()) {
     return <Redirect to="/" />;
   } else {
     return (
       <div className={styles["layout"]}>
-        <div style={{ flex: "1" }}>
+        <div className={styles["image_wrapper"]}>
           <img style={{ width: "465px" }} src={User} alt="Store image"></img>
         </div>
         <div className={styles["form"]}>

@@ -35,6 +35,15 @@
   color: #ffffff;
 }
 
+.arrow_icon_container {
+  display: flex;
+  flex: 1;
+  color: #ffff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .arrow_icon {
   font-size: 90px !important;
   color: #fff;
