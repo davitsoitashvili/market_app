@@ -1,13 +1,11 @@
 import React from "react";
 import styles from "./Authorization.module.css";
-import Login from "./Login";
-import Registration from "./Registration";
 
-function AuthorizationPage() {
+function AuthorizationPage({children}) {
   return (
     <div className={styles["container"]}>
       <div className={styles["wrapper"]}>
-        <Registration></Registration>
+        {children}
       </div>
     </div>
   );
