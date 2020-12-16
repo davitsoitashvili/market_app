@@ -8,6 +8,7 @@ const initialState = {
   items: [],
   itemsLoading: false,
   itemsLoaded: false,
+  cart: [],
 };
 
 export default function (state = initialState, action) {
@@ -26,7 +27,7 @@ export default function (state = initialState, action) {
         itemsLoading: false,
         itemsLoaded: true,
       };
-    case FETCH_ITEMS:
+    case FETCH_ITEMS_FAIL:
       return {
         ...state,
         items: [],

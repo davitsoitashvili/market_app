@@ -4,6 +4,8 @@ import styles from "./Catalogue.module.css";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import Tooltip from "@material-ui/core/Tooltip";
 
 function Catalogue({ title, items }) {
   return (
@@ -27,13 +29,6 @@ function Catalogue({ title, items }) {
               <TextareaAutosize rowsMax={4} disabled="true">
                 {item.description}
               </TextareaAutosize>
-              {/* <Typography
-                variant="subtitle1"
-                component="subtitle1"
-                className={styles["item_desc"]}
-              >
-                {item.description}
-              </Typography> */}
               <Typography
                 variant="subtitle1"
                 component="subtitle1"
@@ -41,6 +36,11 @@ function Catalogue({ title, items }) {
               >
                 Price: {item.price} $
               </Typography>
+            </div>
+            <div className={styles["icon"]}>
+              <Tooltip title="Add To Shopping cart">
+                <AddCircleOutlineIcon style={{ fontSize: "2.5rem" }} />
+              </Tooltip>
             </div>
           </Card>
         ))}
