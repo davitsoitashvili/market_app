@@ -1,23 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
-import { logout, getToken } from "../../../service/auth";
+import { getToken } from "../../../service/auth";
 import styles from "./DashBoard.module.css";
-import { connect } from "react-redux";
-import LinearProgress from "@material-ui/core/LinearProgress";
-
-import { getItems } from "../../../store/actions/itemsActions";
-import { JEWELERY } from "../../../service/enum/ProductTypes";
 import NavBar from "../Nav/Nav";
 
-function DashBoard(props) {
-  useEffect(() => {
-    props.getItems(JEWELERY);
-  }, []);
+function DashBoard({ children }) {
   if (getToken()) {
     return (
       <>
-        {props.itemsLoading && <LinearProgress />}
-        <NavBar />
+        <div className={styles["wrapper"]}>
+          <NavBar />
+          {children}
+        </div>
       </>
     );
   } else {
@@ -25,8 +19,4 @@ function DashBoard(props) {
   }
 }
 
-const mapStateToProps = (state) => ({
-  items: state.items.items,
-  itemsLoading: state.items.itemsLoading,
-});
-export default connect(mapStateToProps, { getItems })(DashBoard);
+export default DashBoard;

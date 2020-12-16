@@ -7,14 +7,20 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import Tooltip from "@material-ui/core/Tooltip";
 
+import { useHistory } from "react-router-dom";
+
 function NavBar() {
+  let history = useHistory();
+  function handleClick(path) {
+    history.push(`/${path}`);
+  }
   return (
     <div className={styles["container"]}>
       <ul className={styles["list"]}>
-        <li>Jewelery</li>
-        <li>Electronics</li>
-        <li>Men Clothing</li>
-        <li>Women Clothing</li>
+        <li onClick={() => handleClick("")}>Jewelery</li>
+        <li onClick={() => handleClick("electronics")}>Electronics</li>
+        <li onClick={() => handleClick("men-clothing")}>Men Clothing</li>
+        <li onClick={() => handleClick("women-clothing")}>Women Clothing</li>
       </ul>
       <div>
         <img className={styles["image"]} src={Logo} alt="Logo" />
