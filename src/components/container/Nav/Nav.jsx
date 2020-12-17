@@ -5,11 +5,14 @@ import Logo from "../../../assets/img/logo_transparent.png";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import LocalAtmIcon from "@material-ui/icons/LocalAtm";
+import Badge from "@material-ui/core/Badge";
 import Tooltip from "@material-ui/core/Tooltip";
 
 import { useHistory } from "react-router-dom";
 
-function NavBar() {
+import { connect } from "react-redux";
+
+function NavBar(props) {
   let history = useHistory();
   function handleClick(path) {
     history.push(`/${path}`);
@@ -26,12 +29,14 @@ function NavBar() {
         <img className={styles["image"]} src={Logo} alt="Logo" />
       </div>
       <div className={styles["profile"]}>
-        <Tooltip title="Shopping cart">
-          <AddShoppingCartIcon
-            style={{ fontSize: "2rem", cursor: "pointer" }}
-            className={styles["icon"]}
-          />
-        </Tooltip>
+        <Badge badgeContent={props.cart.length} color="primary">
+          <Tooltip title="Shopping cart">
+            <AddShoppingCartIcon
+              style={{ fontSize: "2rem", cursor: "pointer" }}
+              className={styles["icon"]}
+            />
+          </Tooltip>
+        </Badge>
 
         <Tooltip title="Balance">
           <LocalAtmIcon
@@ -50,4 +55,9 @@ function NavBar() {
     </div>
   );
 }
-export default NavBar;
+
+const mapStateToProps = (state) => ({
+  cart: state.items.cart,
+});
+
+export default connect(mapStateToProps)(NavBar);

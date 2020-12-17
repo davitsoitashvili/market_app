@@ -2,6 +2,7 @@ import {
   FETCH_ITEMS,
   FETCH_ITEMS_SUCCESS,
   FETCH_ITEMS_FAIL,
+  ADD_ITEM_TO_CART,
 } from "../actions/types";
 
 const initialState = {
@@ -34,6 +35,12 @@ export default function (state = initialState, action) {
         itemsLoading: false,
         itemsLoaded: false,
       };
+    case ADD_ITEM_TO_CART: {
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
+      };
+    }
     default:
       return state;
   }

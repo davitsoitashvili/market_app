@@ -7,14 +7,17 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Tooltip from "@material-ui/core/Tooltip";
 
-function Catalogue({ title, items }) {
+import { connect } from "react-redux";
+import { addItem } from "../../../store/actions/itemsActions";
+
+function Catalogue(props) {
   return (
     <React.Fragment>
       <Typography variant="h3" component="h3" className={styles["header"]}>
-        {title}
+        {props.title}
       </Typography>
       <div className={styles["wrapper"]}>
-        {items.map((item) => (
+        {props.items.map((item) => (
           <Card className={styles["card"]}>
             <img className={styles["item_img"]} src={item.image} alt="Item" />
             <div className={styles["divider"]}></div>
@@ -39,7 +42,10 @@ function Catalogue({ title, items }) {
             </div>
             <div className={styles["icon"]}>
               <Tooltip title="Add To Shopping cart">
-                <AddCircleOutlineIcon style={{ fontSize: "2.5rem" }} />
+                <AddCircleOutlineIcon
+                  onClick={() => props.addItem({ item })}
+                  style={{ fontSize: "2.5rem", cursor: "pointer" }}
+                />
               </Tooltip>
             </div>
           </Card>
@@ -54,4 +60,9 @@ Catalogue.propTypes = {
   items: PropTypes.array,
 };
 
-export default Catalogue;
+function mapDispatchToProps(dispatch) {
+  return {
+    addItem: (item) => dispatch(addItem(item)),
+  };
+}
+export default connect(null, mapDispatchToProps)(Catalogue);

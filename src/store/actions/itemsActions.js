@@ -1,4 +1,9 @@
-import { FETCH_ITEMS, FETCH_ITEMS_SUCCESS, FETCH_ITEMS_FAIL } from "./types";
+import {
+  FETCH_ITEMS,
+  FETCH_ITEMS_SUCCESS,
+  FETCH_ITEMS_FAIL,
+  ADD_ITEM_TO_CART,
+} from "./types";
 
 export function getItems(category) {
   return (dispatch) => {
@@ -15,4 +20,8 @@ export function getItems(category) {
         }
       );
   };
+}
+
+export function addItem(payload) {
+  return { type: ADD_ITEM_TO_CART, payload };
 }
