@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import styles from "./Catalogue.module.css";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Tooltip from "@material-ui/core/Tooltip";
+
+import ShowMoreText from "react-show-more-text";
 
 import { connect } from "react-redux";
 import { addItem } from "../../../store/actions/itemsActions";
@@ -29,9 +30,26 @@ function Catalogue(props) {
               >
                 {item.title}
               </Typography>
-              <TextareaAutosize rowsMax={4} disabled="true">
-                {item.description}
-              </TextareaAutosize>
+              <ShowMoreText
+                className={styles["desc_wrapper"]}
+                lines={4}
+                more="Show more"
+                less="Show less"
+                className="content-css"
+                anchorClass="my-anchor-css-class"
+                expanded={false}
+                width={300}
+              >
+                <Typography>{item.description}</Typography>
+              </ShowMoreText>
+              {/* <div className={styles["desc_wrapper"]}>
+                <Typography className={styles["item_desc"]}>
+                  {showFullText(item.description)}
+                </Typography>
+                <Tooltip title="See Full Description">
+                  <Typography className={styles["see_more"]}>...</Typography>
+                </Tooltip>
+              </div> */}
               <Typography
                 variant="subtitle1"
                 component="subtitle1"

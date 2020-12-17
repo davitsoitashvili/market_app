@@ -35,7 +35,7 @@ function Registration() {
     return (
       <div className={styles["layout"]}>
         <div className={styles["image_wrapper"]}>
-          <img style={{ width: "465px" }} src={User} alt="Store image"></img>
+          <img style={{ width: "465px" }} src={User} alt="Store"></img>
         </div>
         <div className={styles["form"]}>
           <Form title="Registration" method="POST" onSubmit={onSubmit}>
