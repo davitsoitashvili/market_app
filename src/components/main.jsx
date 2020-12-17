@@ -11,6 +11,8 @@ import Jewelery from "./container/Items/Jewelery/Jewelery";
 import Electronics from "./container/Items/Electronics/Electronics";
 import MenClothing from "./container/Items/MenClothing/MenClothing";
 import WomenClothing from "./container/Items/WomenClothing/WomenClothing";
+import Checkout from "./presentation/Checkout/Checkout"
+
 
 import { connect } from "react-redux";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -51,6 +53,11 @@ function Main(props) {
           <Route path="/women-clothing" exact>
             <DashBoard>
               <WomenClothing />
+            </DashBoard>
+          </Route>
+          <Route path="/checkout" exact>
+            <DashBoard>
+              <Checkout />
             </DashBoard>
           </Route>
           <Route path="*">

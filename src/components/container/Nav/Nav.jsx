@@ -32,6 +32,7 @@ function NavBar(props) {
         <Badge badgeContent={props.cart.length} color="primary">
           <Tooltip title="Shopping cart">
             <AddShoppingCartIcon
+              onClick={() => handleClick("checkout")}
               style={{ fontSize: "2rem", cursor: "pointer" }}
               className={styles["icon"]}
             />
