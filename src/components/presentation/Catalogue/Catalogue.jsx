@@ -30,26 +30,20 @@ function Catalogue(props) {
               >
                 {item.title}
               </Typography>
-              <ShowMoreText
-                className={styles["desc_wrapper"]}
-                lines={4}
-                more="Show more"
-                less="Show less"
-                className="content-css"
-                anchorClass="my-anchor-css-class"
-                expanded={false}
-                width={300}
-              >
-                <Typography>{item.description}</Typography>
-              </ShowMoreText>
-              {/* <div className={styles["desc_wrapper"]}>
-                <Typography className={styles["item_desc"]}>
-                  {showFullText(item.description)}
-                </Typography>
-                <Tooltip title="See Full Description">
-                  <Typography className={styles["see_more"]}>...</Typography>
-                </Tooltip>
-              </div> */}
+              <div className={styles["desc_wrapper"]}>
+                <ShowMoreText
+                  lines={4}
+                  more="Show more"
+                  less="Show less"
+                  className="content-css"
+                  anchorClass="my-anchor-css-class"
+                  expanded={false}
+                  width={300}
+                >
+                  <Typography>{item.description}</Typography>
+                </ShowMoreText>
+              </div>
+
               <Typography
                 variant="subtitle1"
                 component="subtitle1"

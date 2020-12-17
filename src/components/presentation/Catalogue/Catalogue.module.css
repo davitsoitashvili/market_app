@@ -50,7 +50,9 @@
 }
 
 .desc_wrapper {
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
 .item_desc {
