@@ -8,6 +8,8 @@ import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import Badge from "@material-ui/core/Badge";
 import Tooltip from "@material-ui/core/Tooltip";
 
+import { logout } from "../../../service/auth";
+
 import { useHistory } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -39,17 +41,11 @@ function NavBar(props) {
           </Tooltip>
         </Badge>
 
-        <Tooltip title="Balance">
-          <LocalAtmIcon
-            style={{ fontSize: "2.2rem", cursor: "pointer" }}
-            className={styles["icon"]}
-          />
-        </Tooltip>
-
         <Tooltip title="Log Out">
           <ExitToAppIcon
             style={{ fontSize: "2rem", cursor: "pointer" }}
             className={styles["icon"]}
+            onClick={logout}
           />
         </Tooltip>
       </div>

@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./Catalogue.module.css";
 import Typography from "@material-ui/core/Typography";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
 import Card from "@material-ui/core/Card";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -12,8 +14,43 @@ import { connect } from "react-redux";
 import { addItem } from "../../../store/actions/itemsActions";
 
 function Catalogue(props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 3000);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const addItemToCart = (item) => {
+    let isAlreadyAdded = false;
+    let cartItems = [...props.cart];
+    if (cartItems.length) {
+      cartItems.forEach((el) => {
+        if (el.item.id === item.id) {
+          isAlreadyAdded = true;
+          handleClick();
+        }
+      });
+    }
+
+    if (!isAlreadyAdded) {
+      props.addItem({ item });
+    }
+  };
+
   return (
     <React.Fragment>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          Item was already added to cart
+        </Alert>
+      </Snackbar>
       <Typography variant="h3" component="h3" className={styles["header"]}>
         {props.title}
       </Typography>
@@ -55,7 +92,7 @@ function Catalogue(props) {
             <div className={styles["icon"]}>
               <Tooltip title="Add To Shopping cart">
                 <AddCircleOutlineIcon
-                  onClick={() => props.addItem({ item })}
+                  onClick={() => addItemToCart(item)}
                   style={{ fontSize: "2.5rem", cursor: "pointer" }}
                 />
               </Tooltip>
@@ -77,4 +114,8 @@ function mapDispatchToProps(dispatch) {
     addItem: (item) => dispatch(addItem(item)),
   };
 }
-export default connect(null, mapDispatchToProps)(Catalogue);
+
+const mapStateToProps = (state) => ({
+  cart: state.items.cart,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Catalogue);

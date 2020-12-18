@@ -16,7 +16,7 @@ const onSubmit = async (event) => {
     confirmPassword: target.confirmPassword.value,
   };
   if (
-    registrationValidationData.password ==
+    registrationValidationData.password ===
     registrationValidationData.confirmPassword
   ) {
     registration(

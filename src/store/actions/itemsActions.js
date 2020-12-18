@@ -3,6 +3,9 @@ import {
   FETCH_ITEMS_SUCCESS,
   FETCH_ITEMS_FAIL,
   ADD_ITEM_TO_CART,
+  INCREASE_ITEM_AMOUNT,
+  DECRIASE_ITEM_AMOUNT,
+  REMOVE_ITEM_FROM_CART,
 } from "./types";
 
 export function getItems(category) {
@@ -24,4 +27,16 @@ export function getItems(category) {
 
 export function addItem(payload) {
   return { type: ADD_ITEM_TO_CART, payload };
+}
+
+export function removeItem(payload) {
+  return { type: REMOVE_ITEM_FROM_CART, payload };
+}
+
+export function increaseItem(payload) {
+  return { type: INCREASE_ITEM_AMOUNT, payload };
+}
+
+export function decreaseItem(payload) {
+  return { type: DECRIASE_ITEM_AMOUNT, payload };
 }

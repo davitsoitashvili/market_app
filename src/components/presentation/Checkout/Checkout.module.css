@@ -1,0 +1,18 @@
+.wrapper {
+  margin: 0 auto;
+}
+
+.cart {
+  width: 500px;
+}
+
+.header {
+  color: #3964ed;
+  margin-bottom: 60px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
