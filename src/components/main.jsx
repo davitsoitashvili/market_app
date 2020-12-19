@@ -21,7 +21,7 @@ function Main(props) {
   return (
     <Router>
       <div className="App">
-        {props.itemsLoading && <LinearProgress />}
+        {(props.itemsLoading || props.makePurchaseLoading) && <LinearProgress />}
         <Switch>
           <Route path="/registration">
             <LandingPage />
@@ -70,5 +70,6 @@ function Main(props) {
 }
 const mapStateToProps = (state) => ({
   itemsLoading: state.items.itemsLoading,
+  makePurchaseLoading: state.userInfo.makePurchaseLoading,
 });
 export default connect(mapStateToProps)(Main);

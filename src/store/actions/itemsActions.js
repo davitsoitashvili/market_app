@@ -6,6 +6,7 @@ import {
   INCREASE_ITEM_AMOUNT,
   DECRIASE_ITEM_AMOUNT,
   REMOVE_ITEM_FROM_CART,
+  RESET_ITEMS_STATE,
 } from "./types";
 
 export function getItems(category) {
@@ -39,4 +40,8 @@ export function increaseItem(payload) {
 
 export function decreaseItem(payload) {
   return { type: DECRIASE_ITEM_AMOUNT, payload };
+}
+
+export function resetItemsState() {
+  return { type: RESET_ITEMS_STATE };
 }

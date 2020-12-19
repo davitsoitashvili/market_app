@@ -1,4 +1,21 @@
-.wrapper {
+.img {
+    max-width: 600px;
+  }
+  .wrapper {
     display: flex;
-    justify-content: space-between;
-}
+    justify-content: space-around;
+  }
+  
+  .input_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .input {
+    width: 250px;
+    margin-bottom: 20px !important;
+  }
+  
+  

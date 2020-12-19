@@ -6,6 +6,7 @@ import {
   INCREASE_ITEM_AMOUNT,
   DECRIASE_ITEM_AMOUNT,
   REMOVE_ITEM_FROM_CART,
+  RESET_ITEMS_STATE,
 } from "../actions/types";
 
 const initialState = {
@@ -91,6 +92,9 @@ export default function (state = initialState, action) {
         totalSum: Math.round(newTotalSum * 100) / 100,
       };
     }
+    case RESET_ITEMS_STATE:
+      return initialState;
+
     default:
       return state;
   }

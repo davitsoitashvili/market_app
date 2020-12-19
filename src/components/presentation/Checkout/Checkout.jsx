@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import StepContent from "@material-ui/core/StepContent";
 import ViewChosenItems from "../../container/ViewChosenItems/ViewChosenItems";
 import ShippingInfo from "../../container/ShippingInfo/ShippingInfo";
-import CreditCardInfo from "../../container/CreditCardInfo/CreditCardInfo";
 import styles from "./Checkout.module.css";
 
 import Cart from "../../../assets/img/empty_cart.png";
@@ -30,7 +29,7 @@ function Checkout(props) {
     },
   }));
   function getSteps() {
-    return ["View Items", "Shipping Info", "Credit Card Info"];
+    return ["View Items", "Client Information"];
   }
 
   function getStepContent(step) {
@@ -39,8 +38,6 @@ function Checkout(props) {
         return <ViewChosenItems />;
       case 1:
         return <ShippingInfo />;
-      case 2:
-        return <CreditCardInfo />;
 
       default:
         return "Unknown step";
@@ -72,31 +69,33 @@ function Checkout(props) {
                     <Typography>{getStepContent(index)}</Typography>
                     <div className={classes.actionsContainer}>
                       <div className={styles["buttons"]}>
-                        {activeStep === 0 && (
-                          <div>
+                        <div>
+                          {activeStep === 0 && (
                             <Typography>
                               Total amount: {props.totalSum} $
                             </Typography>
-                          </div>
-                        )}
+                          )}
+                        </div>
+
                         <div>
-                          <Button
-                            disabled={activeStep === 0}
-                            onClick={handleBack}
-                            className={classes.button}
-                          >
-                            Back
-                          </Button>
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={handleNext}
-                            className={classes.button}
-                          >
-                            {activeStep === steps.length - 1
-                              ? "Finish"
-                              : "Next"}
-                          </Button>
+                          {activeStep !== 0 && (
+                            <Button
+                              onClick={handleBack}
+                              className={classes.button}
+                            >
+                              Back
+                            </Button>
+                          )}
+                          {activeStep !== steps.length - 1 && (
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              onClick={handleNext}
+                              className={classes.button}
+                            >
+                              Next
+                            </Button>
+                          )}
                         </div>
                       </div>
                     </div>
