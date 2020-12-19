@@ -72,11 +72,13 @@ function Checkout(props) {
                     <Typography>{getStepContent(index)}</Typography>
                     <div className={classes.actionsContainer}>
                       <div className={styles["buttons"]}>
-                        <div>
-                          <Typography>
-                            Total amount: {props.totalSum} $
-                          </Typography>
-                        </div>
+                        {activeStep === 0 && (
+                          <div>
+                            <Typography>
+                              Total amount: {props.totalSum} $
+                            </Typography>
+                          </div>
+                        )}
                         <div>
                           <Button
                             disabled={activeStep === 0}

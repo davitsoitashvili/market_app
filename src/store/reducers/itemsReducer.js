@@ -43,7 +43,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         cart: [...state.cart, { ...action.payload, amount: 1 }],
-        totalSum: state.totalSum + action.payload.item.price,
+        totalSum:
+          Math.round((state.totalSum + action.payload.item.price) * 100) / 100,
       };
     }
     case REMOVE_ITEM_FROM_CART: {
@@ -69,7 +70,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         cart: [...cartItems],
-        totalSum: state.totalSum + action.payload.row.price,
+        totalSum:
+          Math.round((state.totalSum + action.payload.row.price) * 100) / 100,
       };
     }
     case DECRIASE_ITEM_AMOUNT: {
@@ -86,7 +88,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         cart: [...cartItems],
-        totalSum: newTotalSum,
+        totalSum: Math.round(newTotalSum * 100) / 100,
       };
     }
     default:

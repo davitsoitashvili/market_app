@@ -53,7 +53,7 @@ function ViewChosenItems(props) {
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.title}>
-                <TableCell component="th" scope="row">
+                <TableCell component="th" align="center" scope="row">
                   <img src={row.image} alt="item" className={styles["img"]} />
                 </TableCell>
                 <TableCell align="center" className={styles["title"]}>
