@@ -6,6 +6,7 @@ import styles from "./Authorization.module.css";
 import User from "../../../assets/img/user.png";
 import { Link, Redirect } from "react-router-dom";
 import { getToken, registration } from "../../../service/auth";
+import { reloadPage } from "../../../helpers/helpers";
 
 const onSubmit = async (event) => {
   event.preventDefault();
@@ -23,6 +24,7 @@ const onSubmit = async (event) => {
       registrationValidationData.email,
       registrationValidationData.password
     );
+    reloadPage();
   } else {
     alert("Password Mismatch!");
   }
