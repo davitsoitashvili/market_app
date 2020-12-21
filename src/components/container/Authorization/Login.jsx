@@ -6,6 +6,7 @@ import styles from "./Authorization.module.css";
 import User from "../../../assets/img/user.png";
 import { Link, Redirect } from "react-router-dom";
 import { login, getToken } from "../../../service/auth";
+import { reloadPage } from "../../../helpers/helpers";
 
 function Login() {
   const onSubmit = async (event) => {
@@ -16,6 +17,7 @@ function Login() {
       password: target.password.value,
     };
     login(loginData.email, loginData.password);
+    reloadPage();
   };
 
   if (getToken()) {

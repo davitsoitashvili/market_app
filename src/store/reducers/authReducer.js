@@ -1,13 +1,17 @@
 import { ACTION_AUTHED, ACTION_LOGOUT } from "../actions/types";
 
-const authed = false;
+const initState = {
+  user : null,
+  authed : false
+}
 
-export default function (state = authed, action) {
+
+export default function (state = initState, action) {
   switch (action.type) {
     case ACTION_AUTHED:
-        return true;
+        return {...state, authed : true, user : action.user} 
     case ACTION_LOGOUT:
-        return false;
+      return {...state, authed : false, user : null} 
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { reloadPage } from "../helpers/helpers";
 import { auth } from "../service/firebase";
 import { ACTION_AUTHED, ACTION_LOGOUT } from "../store/actions/types";
 import store from "../store/store";
@@ -20,13 +20,14 @@ export const login = (email, password) => {
 
 export const logout = () => {
   auth.signOut();
+  reloadPage();
 };
 
 export const authListener = () => {
   auth.onAuthStateChanged((user) => {
     if (user) {
       saveToken(user.uid);
-      store.dispatch({type : ACTION_AUTHED})
+      store.dispatch({type : ACTION_AUTHED, user : user.email})
     } else {
       removeToken();
       store.dispatch({type : ACTION_LOGOUT})
