@@ -1,4 +1,8 @@
+import {useEffect} from "react";
 import { auth } from "../service/firebase";
+import { ACTION_AUTHED, ACTION_LOGOUT } from "../store/actions/types";
+import store from "../store/store";
+
 
 const TOKEN = "Token";
 
@@ -22,8 +26,10 @@ export const authListener = () => {
   auth.onAuthStateChanged((user) => {
     if (user) {
       saveToken(user.uid);
+      store.dispatch({type : ACTION_AUTHED})
     } else {
       removeToken();
+      store.dispatch({type : ACTION_LOGOUT})
     }
   });
 };
