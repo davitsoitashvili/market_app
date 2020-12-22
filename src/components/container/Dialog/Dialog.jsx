@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
   makePurchase,
@@ -17,7 +17,7 @@ import styles from "./Dialog.module.css";
 function PurchaseDialog(props) {
   let { open } = props;
   const [sent, setSent] = useState(false);
-  
+
   const finishPurchase = () => {
     props.makePurchase();
     setTimeout(() => {
@@ -35,38 +35,68 @@ function PurchaseDialog(props) {
         aria-labelledby="simple-dialog-title"
         open={open}
       >
-        <DialogTitle id="simple-dialog-title" style={{ textAlign: "center" }}>
-          Finish Purchase
-        </DialogTitle>
+        {!props.purchaseLoading && (
+          <DialogTitle
+            id="simple-dialog-title"
+            style={{ textAlign: "center", color: "#1b69e5" }}
+          >
+            Finish Purchase
+          </DialogTitle>
+        )}
+
         <div className={styles["wrapper"]}>
           {props.purchaseLoading && !sent && (
-            <div>
-              <Typography>Please wait your order is being processed</Typography>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography style={{ fontSize: "25px" }}>
+                Please wait your order is being processed
+              </Typography>
+              <div className={styles["snippet"]} data-title=".dot-elastic">
+                <div className={styles["stage"]}>
+                  <div className={styles["dot-elastic"]}></div>
+                </div>
+              </div>
             </div>
           )}
           {!props.purchaseLoading && (
             <div>
               <Typography>
-                Name: {props.userInfo.firstName} {props.userInfo.lastName}
+                Name:{" "}
+                <span>
+                  {props.userInfo.firstName} {props.userInfo.lastName}
+                </span>
               </Typography>
               <Typography>
-                Shipping address: {props.userInfo.address_one}
+                Shipping address: <span>{props.userInfo.address_one}</span>
               </Typography>
-              <Typography>Phone Number: {props.userInfo.tel}</Typography>
-              <Typography>Total Amount: {props.totalSum} $</Typography>
+              <Typography>
+                Phone Number: <span>{props.userInfo.tel}</span>
+              </Typography>
+              <Typography>
+                Total Amount: <span>{props.totalSum} $</span>
+              </Typography>
             </div>
           )}
 
           {sent && (
             <div className={styles["success"]}>
-              <Typography>Your Purchase was successful</Typography>
-              <CheckCircleIcon />
+              <Typography style={{ fontSize: "30px" }}>
+                Your Purchase was successful
+              </Typography>
+              <CheckCircleIcon className={styles["icon"]} />
             </div>
           )}
 
           {!props.purchaseLoading && (
             <div>
-              <Typography>In order to purchase please confirm</Typography>
+              <Typography className={styles["purchase_text"]}>
+                *In order to purchase please confirm
+              </Typography>
               <div className={styles["buttons"]}>
                 <Button
                   type="submit"
