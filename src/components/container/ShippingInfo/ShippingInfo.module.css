@@ -4,6 +4,8 @@
   .wrapper {
     display: flex;
     justify-content: space-around;
+    max-width: 1000px;
+    margin: 0 auto;
   }
   
   .input_wrapper {

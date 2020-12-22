@@ -71,6 +71,7 @@ function ShippingInfo(props) {
                 name="creditCard"
                 label="Credit Card Number"
                 variant="outlined"
+                autoFocus
                 className={styles["input"]}
                 helperText={
                   submitted && !info.creditCard.length
