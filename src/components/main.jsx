@@ -11,17 +11,19 @@ import Jewelery from "./container/Items/Jewelery/Jewelery";
 import Electronics from "./container/Items/Electronics/Electronics";
 import MenClothing from "./container/Items/MenClothing/MenClothing";
 import WomenClothing from "./container/Items/WomenClothing/WomenClothing";
-import Checkout from "./presentation/Checkout/Checkout"
-
+import Checkout from "./presentation/Checkout/Checkout";
 
 import { connect } from "react-redux";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import UpdateProfile from "./container/UpdateProfile/UpdateProfile";
 
 function Main(props) {
   return (
     <Router>
       <div className="App">
-        {(props.itemsLoading || props.makePurchaseLoading) && <LinearProgress />}
+        {(props.itemsLoading || props.makePurchaseLoading) && (
+          <LinearProgress />
+        )}
         <Switch>
           <Route path="/registration">
             <LandingPage />
@@ -58,6 +60,11 @@ function Main(props) {
           <Route path="/checkout" exact>
             <DashBoard>
               <Checkout />
+            </DashBoard>
+          </Route>
+          <Route path="/update-profile" exact>
+            <DashBoard>
+              <UpdateProfile/>
             </DashBoard>
           </Route>
           <Route path="*">

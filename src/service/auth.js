@@ -23,14 +23,23 @@ export const logout = () => {
   reloadPage();
 };
 
-export const authListener = () => {
+export const authListener = (emailAddress = null) => {
   auth.onAuthStateChanged((user) => {
     if (user) {
-      saveToken(user.uid);
-      store.dispatch({type : ACTION_AUTHED, user : user.email})
+      saveToken(user);
+      if (emailAddress != null) {
+        user.updateEmail(emailAddress)
+        .then(function () {
+            alert("success");
+          })
+          .catch(function (error) { 
+            alert(error);
+          });
+      }
+      store.dispatch({ type: ACTION_AUTHED, user: user.email });
     } else {
       removeToken();
-      store.dispatch({type : ACTION_LOGOUT})
+      store.dispatch({ type: ACTION_LOGOUT });
     }
   });
 };
