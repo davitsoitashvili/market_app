@@ -20,7 +20,7 @@ export function getItems(category) {
         (items) => {
           let newItems = [];
           items.forEach((el) => {
-            newItems = [...newItems, { ...el, quantity: generateNums(10, 1) }];
+            newItems = [...newItems, { ...el, quantity: generateNums(10, 2) }];
           });
           console.log(items);
 
