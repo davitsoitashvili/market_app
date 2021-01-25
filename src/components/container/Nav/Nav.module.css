@@ -48,6 +48,11 @@
   width: 270px;
   transform: translateY(-91px);
 }
+.profile_li {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
 
 .profile {
   width: 130px;
