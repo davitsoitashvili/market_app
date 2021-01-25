@@ -22,6 +22,7 @@ function NavBar(props) {
   return (
     <div className={styles["container"]}>
       <ul className={styles["list"]}>
+        <li onClick={() => handleClick("Profile")}>Profile</li>
         <li onClick={() => handleClick("")}>Jewelery</li>
         <li onClick={() => handleClick("electronics")}>Electronics</li>
         <li onClick={() => handleClick("men-clothing")}>Men Clothing</li>
