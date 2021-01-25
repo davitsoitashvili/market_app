@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { authListener } from "./service/auth";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import Main from "./components/main.jsx";
+import Main from "./components/Main.jsx";
 
 
 function App() {
