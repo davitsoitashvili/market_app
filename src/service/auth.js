@@ -27,7 +27,7 @@ export const authListener = (emailAddress = null) => {
   auth.onAuthStateChanged((user) => {
     if (user) {
       saveToken(user.uid);
-      store.dispatch({type : ACTION_AUTHED, user : user.email})
+      store.dispatch({type : ACTION_AUTHED, user : user})
     } else {
       removeToken();
       store.dispatch({type : ACTION_LOGOUT})
