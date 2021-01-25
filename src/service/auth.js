@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { reloadPage } from "../helpers/helpers";
 import { auth } from "../service/firebase";
 import { ACTION_AUTHED, ACTION_LOGOUT } from "../store/actions/types";
@@ -36,7 +37,7 @@ export const authListener = (emailAddress = null) => {
             alert(error);
           });
       }
-      store.dispatch({ type: ACTION_AUTHED, user: user.email });
+      store.dispatch({ type: ACTION_AUTHED, user: user });
     } else {
       removeToken();
       store.dispatch({ type: ACTION_LOGOUT });
