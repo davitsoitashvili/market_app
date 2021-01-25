@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { reloadPage } from "../helpers/helpers";
 import { auth } from "../service/firebase";
 import { ACTION_AUTHED, ACTION_LOGOUT } from "../store/actions/types";
@@ -27,20 +26,11 @@ export const logout = () => {
 export const authListener = (emailAddress = null) => {
   auth.onAuthStateChanged((user) => {
     if (user) {
-      saveToken(user);
-      if (emailAddress != null) {
-        user.updateEmail(emailAddress)
-        .then(function () {
-            alert("success");
-          })
-          .catch(function (error) { 
-            alert(error);
-          });
-      }
-      store.dispatch({ type: ACTION_AUTHED, user: user });
+      saveToken(user.uid);
+      store.dispatch({type : ACTION_AUTHED, user : user.email})
     } else {
       removeToken();
-      store.dispatch({ type: ACTION_LOGOUT });
+      store.dispatch({type : ACTION_LOGOUT})
     }
   });
 };

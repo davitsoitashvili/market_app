@@ -9,6 +9,8 @@ import {
   RESET_ITEMS_STATE,
 } from "./types";
 
+import { generateNums } from "../../helpers/generateNumbers";
+
 export function getItems(category) {
   return (dispatch) => {
     dispatch({ type: FETCH_ITEMS, category });
@@ -16,7 +18,13 @@ export function getItems(category) {
       .then((res) => res.json())
       .then(
         (items) => {
-          dispatch({ type: FETCH_ITEMS_SUCCESS, payload: items });
+          let newItems = [];
+          items.forEach((el) => {
+            newItems = [...newItems, { ...el, quantity: generateNums(10, 2) }];
+          });
+          console.log(items);
+
+          dispatch({ type: FETCH_ITEMS_SUCCESS, payload: newItems });
         },
         (error) => {
           dispatch({ type: FETCH_ITEMS_FAIL });

@@ -41,9 +41,23 @@ export default function (state = initialState, action) {
         itemsLoaded: false,
       };
     case ADD_ITEM_TO_CART: {
+      let cartItems = [...state.items];
+      cartItems.forEach((el) => {
+        if (el.id === action.payload.item.id) {
+          el.quantity--;
+        }
+      });
       return {
         ...state,
-        cart: [...state.cart, { ...action.payload, amount: 1 }],
+        items: [...cartItems],
+        cart: [
+          ...state.cart,
+          {
+            ...action.payload,
+            amount: 1,
+            quantity: action.payload.item.quantity - 1,
+          },
+        ],
         totalSum:
           Math.round((state.totalSum + action.payload.item.price) * 100) / 100,
       };

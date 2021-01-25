@@ -7,11 +7,13 @@ import Alert from "@material-ui/lab/Alert";
 import Card from "@material-ui/core/Card";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Tooltip from "@material-ui/core/Tooltip";
+import ErrorIcon from "@material-ui/icons/Error";
 
 import ShowMoreText from "react-show-more-text";
 
 import { connect } from "react-redux";
 import { addItem } from "../../../store/actions/itemsActions";
+import Quantity from "../Quantity/Quiantity";
 
 function Catalogue(props) {
   const [open, setOpen] = React.useState(false);
@@ -57,6 +59,12 @@ function Catalogue(props) {
       <div className={styles["wrapper"]}>
         {props.items.map((item) => (
           <Card className={styles["card"]}>
+            {item.quantity <= 5 && (
+              <div className={styles["quantity_wrapper"]}>
+                <Quantity number={item.quantity} />
+                <ErrorIcon className={styles["quantity"]} />
+              </div>
+            )}
             <img className={styles["item_img"]} src={item.image} alt="Item" />
             <div className={styles["divider"]}></div>
             <div className={styles["text_wrapper"]}>
