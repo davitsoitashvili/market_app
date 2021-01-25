@@ -17,16 +17,41 @@ function UpdateProfile(props) {
       .updateEmail(newEmailAddress)
       .then(function () {
         alert("Email Address has been changed successfully!");
-        reloadPage();
       })
       .catch(function (error) {
         alert(error);
       });
+
+      reloadPage();
+  };
+
+  const updatePassword = async (event) => {
+    event.preventDefault();
+    const password = event.target.password.value;
+    const confirmPassword = event.target.confirm_password.value;
+
+    if (password == confirmPassword) {
+      user
+        .updatePassword(password)
+        .then(function () {
+          alert("Password has been changed successfully!");
+        })
+        .catch(function (error) {
+          alert(error);
+        });
+    } else {
+      alert("Passwords don't match, try again!")
+    }
+    reloadPage();
+       
   };
 
   return (
     <div className={styles["form_div"]}>
-      <form className={styles["form"]} onSubmit={updateEmailAddress}>
+      <form
+        className={styles["update_email_form"]}
+        onSubmit={updateEmailAddress}
+      >
         <input
           className={styles["input"]}
           type="email"
@@ -35,8 +60,31 @@ function UpdateProfile(props) {
           required
         ></input>
         <br></br>
-        <button className={styles["button"]} type="submit">
-          Save
+        <button className={styles["update_email_button"]} type="submit">
+          Update Email Address
+        </button>
+      </form>
+
+      <form
+        className={styles["update_password_form"]}
+        onSubmit={updatePassword}
+      >
+        <input
+          required
+          className={styles["input"]}
+          type="password"
+          id="password"
+          placeholder="password"
+        />
+        <input
+          required
+          className={styles["input"]}
+          type="password"
+          id="confirm_password"
+          placeholder="confirm password"
+        />
+        <button className={styles["update_password_button"]} type="submit">
+          Update Password
         </button>
       </form>
     </div>

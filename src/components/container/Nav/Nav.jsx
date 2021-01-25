@@ -4,7 +4,6 @@ import Logo from "../../../assets/img/logo_transparent.png";
 
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import Badge from "@material-ui/core/Badge";
 import Tooltip from "@material-ui/core/Tooltip";
 

@@ -1,18 +1,27 @@
 .form_div {
+  display: flex;
   border: 1px solid black;
-  width: 300px;
+  width: 600px;
   height: 300px;
   margin: 80px auto;
   border-radius: 30px;
   padding: 20px;
 }
 
-.form {
+.update_email_form {
   text-align: center;
   margin-top: 105px;
+  margin-left: 20px;
+}
+
+.update_password_form {
+  text-align: center;
+  margin-top: 105px;
+  margin-left: 20px;
 }
 
 .input {
+  margin-bottom: 20px;
   font-size: 18px;
   width: 250px;
   height: 30px;
@@ -21,11 +30,20 @@
   text-align: center;
 }
 
-.button {
-  margin-top: 45px;
+.update_email_button {
+  margin-top: 65px;
   width: 200px;
   height: 40px;
   background-color: blueviolet;
+  font-size: 15px;
+  color: white;
+  border-radius: 10px;
+}
+
+.update_password_button {
+  width: 200px;
+  height: 40px;
+  background-color: green;
   font-size: 15px;
   color: white;
   border-radius: 10px;
