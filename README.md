@@ -1,3 +1,8 @@
+##Registered User
+
+mail :user@yahoo.com
+password: 123123
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -5,6 +10,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+## `npm install`
+
+Install all required packages
 
 ### `npm start`
 
