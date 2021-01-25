@@ -15,7 +15,7 @@ import Checkout from "./presentation/Checkout/Checkout";
 
 import { connect } from "react-redux";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import UpdateProfile from "./container/UpdateProfile/UpdateProfile";
+import Profile from "./container/Profile/Profile";
 
 function Main(props) {
   return (
@@ -62,9 +62,9 @@ function Main(props) {
               <Checkout />
             </DashBoard>
           </Route>
-          <Route path="/update-profile" exact>
+          <Route path="/profile" exact>
             <DashBoard>
-              <UpdateProfile/>
+              <Profile/>
             </DashBoard>
           </Route>
           <Route path="*">
