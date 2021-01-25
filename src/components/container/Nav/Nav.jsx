@@ -6,8 +6,10 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Badge from "@material-ui/core/Badge";
 import Tooltip from "@material-ui/core/Tooltip";
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 
 import { logout } from "../../../service/auth";
+
 
 import { useHistory } from "react-router-dom";
 
@@ -21,7 +23,6 @@ function NavBar(props) {
   return (
     <div className={styles["container"]}>
       <ul className={styles["list"]}>
-        <li className={styles["profile_li"]} onClick={() => handleClick("Profile")}>Profile</li>
         <li onClick={() => handleClick("")}>Jewelery</li>
         <li onClick={() => handleClick("electronics")}>Electronics</li>
         <li onClick={() => handleClick("men-clothing")}>Men Clothing</li>
@@ -40,6 +41,14 @@ function NavBar(props) {
             />
           </Tooltip>
         </Badge>
+
+        <Tooltip title="Profile">
+          <PermIdentityIcon
+            style={{ fontSize: "2rem", cursor: "pointer" }}
+            className={styles["icon"]}
+            onClick={() => handleClick("Profile")}
+          />
+        </Tooltip>
 
         <Tooltip title="Log Out">
           <ExitToAppIcon
