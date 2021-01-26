@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   FETCH_ITEMS,
   FETCH_ITEMS_SUCCESS,
@@ -7,6 +8,7 @@ import {
   DECRIASE_ITEM_AMOUNT,
   REMOVE_ITEM_FROM_CART,
   RESET_ITEMS_STATE,
+  ADD_PROMO_CODE,
 } from "./types";
 
 import { generateNums } from "../../helpers/generateNumbers";
@@ -14,16 +16,17 @@ import { generateNums } from "../../helpers/generateNumbers";
 export function getItems(category) {
   return (dispatch) => {
     dispatch({ type: FETCH_ITEMS, category });
-    return fetch("https://fakestoreapi.com/products/category/" + category)
-      .then((res) => res.json())
+    return axios
+      .get("https://fakestoreapi.com/products/category/" + category)
       .then(
-        (items) => {
+        ({data}) => {
           let newItems = [];
-          items.forEach((el) => {
-            newItems = [...newItems, { ...el, quantity: generateNums(10, 2) }];
+          data.forEach((el) => {
+            newItems = [
+              ...newItems,
+              { ...el, quantity: generateNums(10, 2), itemCategory: category },
+            ];
           });
-          console.log(items);
-
           dispatch({ type: FETCH_ITEMS_SUCCESS, payload: newItems });
         },
         (error) => {
@@ -52,4 +55,8 @@ export function decreaseItem(payload) {
 
 export function resetItemsState() {
   return { type: RESET_ITEMS_STATE };
+}
+
+export function applyCode(payload) {
+  return { type: ADD_PROMO_CODE, payload };
 }

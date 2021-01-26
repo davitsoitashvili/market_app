@@ -6,12 +6,14 @@ import { connect } from "react-redux";
 
 function Jewelery(props) {
   useEffect(() => {
-    props.getItems(JEWELERY);
+    if (!props.items.length) {
+      props.getItems(JEWELERY);
+    }
   }, []);
   return <Catalogue title="Jewelery" items={props.items} />;
 }
 
 const mapStateToProps = (state) => ({
-  items: state.items.items,
+  items: state.items.itemsJewelery,
 });
 export default connect(mapStateToProps, { getItems })(Jewelery);

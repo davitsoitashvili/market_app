@@ -6,12 +6,14 @@ import { connect } from "react-redux";
 
 function WomenClothing(props) {
   useEffect(() => {
-    props.getItems(WOMANCLOTH);
+    if (!props.items.length) {
+      props.getItems(WOMANCLOTH);
+    }
   }, []);
   return <Catalogue title="Women's Clothing" items={props.items} />;
 }
 
 const mapStateToProps = (state) => ({
-  items: state.items.items,
+  items: state.items.itemsWomen,
 });
 export default connect(mapStateToProps, { getItems })(WomenClothing);

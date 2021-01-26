@@ -58,7 +58,7 @@ function Catalogue(props) {
       </Typography>
       <div className={styles["wrapper"]}>
         {props.items.map((item) => (
-          <Card className={styles["card"]}>
+          <Card className={styles["card"]} key={item.id}>
             {item.quantity <= 5 && (
               <div className={styles["quantity_wrapper"]}>
                 <Quantity number={item.quantity} />
@@ -89,11 +89,7 @@ function Catalogue(props) {
                 </ShowMoreText>
               </div>
 
-              <Typography
-                variant="subtitle1"
-                component="subtitle1"
-                className={styles["item_price"]}
-              >
+              <Typography className={styles["item_price"]}>
                 Price: {item.price} $
               </Typography>
             </div>

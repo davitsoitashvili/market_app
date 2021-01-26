@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -8,9 +8,11 @@ import Typography from "@material-ui/core/Typography";
 import StepContent from "@material-ui/core/StepContent";
 import ViewChosenItems from "../../container/ViewChosenItems/ViewChosenItems";
 import ShippingInfo from "../../container/ShippingInfo/ShippingInfo";
+import TextField from "@material-ui/core/TextField";
 import styles from "./Checkout.module.css";
 
 import Cart from "../../../assets/img/empty_cart.png";
+import { applyCode } from "../../../store/actions/itemsActions";
 
 import { connect } from "react-redux";
 
@@ -48,8 +50,24 @@ function Checkout(props) {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
+  const [promoCode, setPromoCode] = useState("");
+  const [invalidCode, setInvalidCode] = useState(false);
+  const [appliedCode, setAppliedCode] = useState(false);
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const applyCode = () => {
+    console.log(promoCode);
+    if (promoCode.length && promoCode.toLowerCase() === "off10") {
+      props.applyPromoCode(promoCode);
+      setInvalidCode(false);
+      setAppliedCode(true);
+    } else {
+      setInvalidCode(true);
+      setAppliedCode(false);
+    }
   };
 
   const handleBack = () => {
@@ -71,9 +89,40 @@ function Checkout(props) {
                       <div className={styles["buttons"]}>
                         <div>
                           {activeStep === 0 && (
-                            <Typography>
-                              Total amount: {props.totalSum} $
-                            </Typography>
+                            <div>
+                              <div className={styles["promo"]}>
+                                <p style={{ transform: "translate-y(-2px)" }}>
+                                  Enter promo code:
+                                </p>
+                                <TextField
+                                  name="promoCode"
+                                  label="Promo Code"
+                                  variant="outlined"
+                                  value={promoCode}
+                                  onChange={(event) => {
+                                    setPromoCode(event.target.value);
+                                    setInvalidCode(false);
+                                  }}
+                                />
+                                <Button
+                                  type="submit"
+                                  variant="contained"
+                                  color="primary"
+                                  onClick={applyCode}
+                                  disabled={appliedCode}
+                                >
+                                  Apply
+                                </Button>
+                                {invalidCode && (
+                                  <p style={{ color: "red" }}>
+                                    Please Enter Valid Code
+                                  </p>
+                                )}
+                              </div>
+                              <Typography>
+                                Total amount: {props.totalSum} $
+                              </Typography>
+                            </div>
                           )}
                         </div>
 
@@ -124,4 +173,10 @@ const mapStateToProps = (state) => ({
   totalSum: state.items.totalSum,
 });
 
-export default connect(mapStateToProps)(Checkout);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    applyPromoCode: (code) => dispatch(applyCode(code)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

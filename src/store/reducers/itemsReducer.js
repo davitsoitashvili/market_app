@@ -6,11 +6,21 @@ import {
   INCREASE_ITEM_AMOUNT,
   DECRIASE_ITEM_AMOUNT,
   REMOVE_ITEM_FROM_CART,
+  ADD_PROMO_CODE,
   RESET_ITEMS_STATE,
 } from "../actions/types";
 
+import {
+  JEWELERY,
+  ELECTRONICS,
+  MENCLOTH,
+} from "../../service/enum/ProductTypes";
+
 const initialState = {
-  items: [],
+  itemsJewelery: [],
+  itemsElectronics: [],
+  itemsMen: [],
+  itemsWomen: [],
   itemsLoading: false,
   itemsLoaded: false,
   cart: [],
@@ -22,14 +32,35 @@ export default function (state = initialState, action) {
     case FETCH_ITEMS:
       return {
         ...state,
-        items: [],
+        itemsJewelery: [...state.itemsJewelery],
+        itemsElectronics: [...state.itemsElectronics],
+        itemsMen: [...state.itemsMen],
+        itemsWomen: [...state.itemsWomen],
         itemsLoading: true,
         itemsLoaded: false,
       };
     case FETCH_ITEMS_SUCCESS:
+      let jewelery = [...state.itemsJewelery];
+      let elit = [...state.itemsElectronics];
+      let men = [...state.itemsMen];
+      let women = [...state.itemsWomen];
+      action.payload.forEach((el) => {
+        if (el.itemCategory === JEWELERY) {
+          jewelery = [...jewelery, el];
+        } else if (el.itemCategory === ELECTRONICS) {
+          elit = [...elit, el];
+        } else if (el.itemCategory === MENCLOTH) {
+          men = [...men, el];
+        } else {
+          women = [...women, el];
+        }
+      });
       return {
         ...state,
-        items: action.payload,
+        itemsJewelery: jewelery,
+        itemsElectronics: elit,
+        itemsMen: men,
+        itemsWomen: women,
         itemsLoading: false,
         itemsLoaded: true,
       };
@@ -41,15 +72,36 @@ export default function (state = initialState, action) {
         itemsLoaded: false,
       };
     case ADD_ITEM_TO_CART: {
-      let cartItems = [...state.items];
-      cartItems.forEach((el) => {
+      let jewelery = [...state.itemsJewelery];
+      let elit = [...state.itemsElectronics];
+      let men = [...state.itemsMen];
+      let women = [...state.itemsWomen];
+      jewelery.forEach((el) => {
+        if (el.id === action.payload.item.id) {
+          el.quantity--;
+        }
+      });
+      elit.forEach((el) => {
+        if (el.id === action.payload.item.id) {
+          el.quantity--;
+        }
+      });
+      men.forEach((el) => {
+        if (el.id === action.payload.item.id) {
+          el.quantity--;
+        }
+      });
+      women.forEach((el) => {
         if (el.id === action.payload.item.id) {
           el.quantity--;
         }
       });
       return {
         ...state,
-        items: [...cartItems],
+        itemsJewelery: jewelery,
+        itemsElectronics: elit,
+        itemsMen: men,
+        itemsWomen: women,
         cart: [
           ...state.cart,
           {
@@ -104,6 +156,16 @@ export default function (state = initialState, action) {
         ...state,
         cart: [...cartItems],
         totalSum: Math.round(newTotalSum * 100) / 100,
+      };
+    }
+    case ADD_PROMO_CODE: {
+      let newTotalSum = state.totalSum;
+      if (action.payload.toLowerCase() === "off10") {
+        newTotalSum = Math.round(newTotalSum - newTotalSum / 10);
+      }
+      return {
+        ...state,
+        totalSum: newTotalSum,
       };
     }
     case RESET_ITEMS_STATE:

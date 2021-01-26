@@ -12,10 +12,10 @@ import Electronics from "./container/Items/Electronics/Electronics";
 import MenClothing from "./container/Items/MenClothing/MenClothing";
 import WomenClothing from "./container/Items/WomenClothing/WomenClothing";
 import Checkout from "./presentation/Checkout/Checkout";
+import ProfileAccordion from "./presentation/Accordion/Accordion";
 
 import { connect } from "react-redux";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import Profile from "./container/Profile/Profile";
 
 function Main(props) {
   return (
@@ -64,7 +64,7 @@ function Main(props) {
           </Route>
           <Route path="/profile" exact>
             <DashBoard>
-              <Profile/>
+              <ProfileAccordion />
             </DashBoard>
           </Route>
           <Route path="*">

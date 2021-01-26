@@ -16,3 +16,11 @@
   justify-content: space-between;
   width: 100%;
 }
+
+.promo {
+  display: flex;
+  min-width: 470px;
+  width: 650px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}

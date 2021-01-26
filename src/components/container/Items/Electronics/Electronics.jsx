@@ -6,12 +6,14 @@ import { connect } from "react-redux";
 
 function Electronics(props) {
   useEffect(() => {
-    props.getItems(ELECTRONICS);
+    if (!props.items.length) {
+      props.getItems(ELECTRONICS);
+    }
   }, []);
-  return <Catalogue title="Electronics"  items={props.items}/>;
+  return <Catalogue title="Electronics" items={props.items} />;
 }
 
 const mapStateToProps = (state) => ({
-  items: state.items.items,
+  items: state.items.itemsElectronics,
 });
 export default connect(mapStateToProps, { getItems })(Electronics);
