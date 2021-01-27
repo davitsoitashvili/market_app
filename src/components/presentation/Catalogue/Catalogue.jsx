@@ -93,14 +93,16 @@ function Catalogue(props) {
                 Price: {item.price} $
               </Typography>
             </div>
-            <div className={styles["icon"]}>
-              <Tooltip title="Add To Shopping cart">
-                <AddCircleOutlineIcon
-                  onClick={() => addItemToCart(item)}
-                  style={{ fontSize: "2.5rem", cursor: "pointer" }}
-                />
-              </Tooltip>
-            </div>
+            {item.quantity > 0 && (
+              <div className={styles["icon"]}>
+                <Tooltip title="Add To Shopping cart">
+                  <AddCircleOutlineIcon
+                    onClick={() => addItemToCart(item)}
+                    style={{ fontSize: "2.5rem", cursor: "pointer" }}
+                  />
+                </Tooltip>
+              </div>
+            )}
           </Card>
         ))}
       </div>

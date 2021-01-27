@@ -8,6 +8,7 @@ import {
   REMOVE_ITEM_FROM_CART,
   ADD_PROMO_CODE,
   RESET_ITEMS_STATE,
+  ADD_PRODUCT_FOR_SALE,
 } from "../actions/types";
 
 import {
@@ -166,6 +167,29 @@ export default function (state = initialState, action) {
       return {
         ...state,
         totalSum: newTotalSum,
+      };
+    }
+    case ADD_PRODUCT_FOR_SALE: {
+      let jewelery = [...state.itemsJewelery];
+      let elit = [...state.itemsElectronics];
+      let men = [...state.itemsMen];
+      let women = [...state.itemsWomen];
+      if (action.payload.category === JEWELERY) {
+        jewelery = [...jewelery, action.payload];
+      } else if (action.payload.category === ELECTRONICS) {
+        elit = [...elit, action.payload];
+      } else if (action.payload.category === MENCLOTH) {
+        men = [...men, action.payload];
+      } else {
+        women = [...women, action.payload];
+      }
+
+      return {
+        ...state,
+        itemsJewelery: jewelery,
+        itemsElectronics: elit,
+        itemsMen: men,
+        itemsWomen: women,
       };
     }
     case RESET_ITEMS_STATE:

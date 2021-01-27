@@ -5,6 +5,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import UpdateProfile from "../../container/Profile/Profile";
+import AddProduct from "../../container/AddProduct/Addproduct";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,10 +43,7 @@ function ProfileAccordion() {
           <p className={classes.heading}>Add product to your store</p>
         </AccordionSummary>
         <AccordionDetails>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </p>
+          <AddProduct />
         </AccordionDetails>
       </Accordion>
     </div>

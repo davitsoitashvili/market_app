@@ -14,6 +14,10 @@ const ShowQuantity = styled.div`
 `;
 
 function Quantity({ number }) {
-  return <ShowQuantity>Hurry only {number} items left!</ShowQuantity>;
+  if (number > 0) {
+    return <ShowQuantity>Hurry only {number} items left!</ShowQuantity>;
+  } else {
+    return <ShowQuantity>This item is sold out</ShowQuantity>;
+  }
 }
 export default Quantity;

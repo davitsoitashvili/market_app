@@ -9,6 +9,7 @@ import {
   REMOVE_ITEM_FROM_CART,
   RESET_ITEMS_STATE,
   ADD_PROMO_CODE,
+  ADD_PRODUCT_FOR_SALE,
 } from "./types";
 
 import { generateNums } from "../../helpers/generateNumbers";
@@ -19,7 +20,7 @@ export function getItems(category) {
     return axios
       .get("https://fakestoreapi.com/products/category/" + category)
       .then(
-        ({data}) => {
+        ({ data }) => {
           let newItems = [];
           data.forEach((el) => {
             newItems = [
@@ -59,4 +60,8 @@ export function resetItemsState() {
 
 export function applyCode(payload) {
   return { type: ADD_PROMO_CODE, payload };
+}
+
+export function addProduct(payload) {
+  return { type: ADD_PRODUCT_FOR_SALE, payload };
 }
