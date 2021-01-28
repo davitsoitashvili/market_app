@@ -6,6 +6,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import UpdateProfile from "../../container/Profile/Profile";
 import AddProduct from "../../container/AddProduct/Addproduct";
+import Location from "../Location/Location";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +33,18 @@ function ProfileAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <UpdateProfile />
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <p>Find our stores</p>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Location />
         </AccordionDetails>
       </Accordion>
       <Accordion>

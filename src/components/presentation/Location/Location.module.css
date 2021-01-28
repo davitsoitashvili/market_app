@@ -1,0 +1,10 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.info {
+  width: 400px;
+  padding: 20px;
+}
