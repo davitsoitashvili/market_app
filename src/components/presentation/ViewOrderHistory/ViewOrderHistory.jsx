@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -12,13 +12,18 @@ import styles from "./ViewOrderHistory.module.css";
 function createData(image_url, title, price) {
   return { image_url, title, price };
 }
+
 function ViewOrderHistory(props) {
+  const user = useSelector((reducers) => reducers.auth.user);
   let rows = [];
   props.products.forEach((el) => {
-    rows.push(createData(el.image_url, el.item.title, el.item.price));
+    if (user != null) {
+      if (el.owner == user.email)
+        rows.push(createData(el.image_url, el.title, el.price));
+    }
   });
 
-  if (props.products && props.products.length) {
+  if (props.products && props.products.length != 0) {
     return (
       <div>
         <TableContainer component={Paper} style={{ marginBottom: "50px" }}>

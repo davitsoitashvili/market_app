@@ -9,26 +9,9 @@ function UpdateProfile(props) {
 
   useEffect(() => {
     dispatch(getProductsOrderAsync());
-  }, [dispatch]);
+  }, []);
 
   const user = useSelector((reducers) => reducers.auth.user);
-  const products = useSelector((reducers) => reducers.productsOrder.products);
-
-  const productOrderHistory = [];
-
-  const getYourProductHistory = () => {
-    for (var i = 0; i < products.length; i++) {
-      if (user != null) {
-        if (products[i].owner == user.email) {
-          productOrderHistory.push(products[i]);
-        }
-      }
-    }
-    alert(productOrderHistory.length);
-  };
-  setTimeout(() => {
-    getYourProductHistory();
-  }, 1500);
 
   var emailAddress = "";
   if (user != null) {
