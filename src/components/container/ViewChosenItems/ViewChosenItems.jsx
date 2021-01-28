@@ -26,6 +26,7 @@ function createData(image, title, amount, price, id) {
 function ViewChosenItems(props) {
   let rows = [];
   props.cart.forEach((el) => {
+    alert(el.item.title)
     rows.push(
       createData(
         el.item.image,
