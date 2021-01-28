@@ -1,14 +1,34 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { reloadPage } from "../../../helpers/helpers";
+import { getProductsOrderAsync } from "../../../service/product";
 import styles from "./Profile.module.css";
 
 function UpdateProfile(props) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProductsOrderAsync());
+  }, [dispatch]);
+
   const user = useSelector((reducers) => reducers.auth.user);
+  const products = useSelector((reducers) => reducers.productsOrder.products);
+
+  const productOrderHistory = []
+
+  for (var i = 0; i < products.length; i++) {
+    if (products[i].owner == user.email) {
+      productOrderHistory.push(products[i])
+    }
+  }
+  alert(productOrderHistory.length)
+
   var emailAddress = "";
   if (user != null) {
     emailAddress = user.email;
   }
+
+  getProductsOrderAsync();
 
   const updateEmailAddress = async (event) => {
     event.preventDefault();
@@ -22,7 +42,7 @@ function UpdateProfile(props) {
         alert(error);
       });
 
-      reloadPage();
+    reloadPage();
   };
 
   const updatePassword = async (event) => {
@@ -40,10 +60,9 @@ function UpdateProfile(props) {
           alert(error);
         });
     } else {
-      alert("Passwords don't match, try again!")
+      alert("Passwords don't match, try again!");
     }
     reloadPage();
-       
   };
 
   return (
